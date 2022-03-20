@@ -1,5 +1,7 @@
 package com.netcracker.homework1;
 
+import java.util.Arrays;
+
 public class MyPoint {
     private int x = 0;
     private int y = 0;

@@ -1,6 +1,7 @@
 package com.netcracker.homework1;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +11,13 @@ public class Main {
         System.out.println("======================================");
         testEmployee();
         System.out.println("======================================");
+        testBook();
+        System.out.println("======================================");
+        testMyPoint();
+        System.out.println("======================================");
+        testMyTriangle();
+        System.out.println("======================================");
+        System.out.println("THE END");
     }
 
     public static void testCircle(){
@@ -73,6 +81,57 @@ public class Main {
                 new Author[]{new Author("Bruce Ekkel", 'M')},
                 1000 );
         Book book1 = new Book("Computer architecture",
-                new Author[]{new Author()})
+                new Author[]{new Author("John L Hennessy", 'M'),
+                             new Author("David A Patterson", 'M')},
+                2500);
+
+        System.out.println(book);
+        System.out.println("Name:"+book.getName());
+        System.out.println("Authors:"+book.getAuthorNames());
+        System.out.println("Price ="+book.getPrice());
+        System.out.println();
+        System.out.println(book1);
+        System.out.println("Name:"+book1.getName());
+        System.out.println("Authors:"+book1.getAuthorNames());
+        System.out.println("Price ="+book1.getPrice());
+    }
+
+    public static void testMyPoint(){
+        System.out.println("*****************");
+        System.out.println("***testMyPoint***");
+        System.out.println("*****************");
+
+        MyPoint point1 = new MyPoint(0,0);
+        MyPoint point2 = new MyPoint(3,4);
+
+        System.out.println("First point: "+point1);
+        System.out.println(Arrays.toString(point1.getXY()));
+        System.out.println("Second point: "+point2);
+        System.out.println(Arrays.toString(point2.getXY()));
+
+        System.out.println("Distance1 =" + point1.distance(point2));
+        System.out.println("Distance2 =" + point1.distance(point2.getX(), point2.getY()));
+        System.out.println("Distance3 =" + point2.distance());
+    }
+
+    public static void testMyTriangle(){
+        System.out.println("********************");
+        System.out.println("***testMyTriangle***");
+        System.out.println("********************");
+
+        MyTriangle triangle1 = new MyTriangle(
+                0,0,0,3,4,0);
+        MyTriangle triangle2 = new MyTriangle(
+                new MyPoint(0,0), new MyPoint(0,4), new MyPoint(4,0));
+
+        System.out.println(triangle1);
+        System.out.println("Perimeter ="+triangle1.getPerimeter());
+        System.out.println("Type of triangle: "+ triangle1.getType());
+
+        System.out.println(triangle2);
+        System.out.println("Perimeter ="+triangle2.getPerimeter());
+        System.out.println("Type of triangle: "+ triangle2.getType());
+
+
     }
 }
