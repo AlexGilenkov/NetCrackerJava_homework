@@ -37,7 +37,10 @@ public class MyComplex {
 
     @Override
     public String toString() {
-        return "(" + real + "+" + imag + "i)";
+        if (imag < 0) {
+            return "(" + real +  imag + "i)";
+        }
+        return "(" + real + '+' + imag + "i)";
     }
 
     public boolean isReal(){

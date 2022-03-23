@@ -19,12 +19,20 @@ public class MyPolynomial {
         for(int i=coeffs.length-1;i>=0;i--){
             if(coeffs[i]==0)
                 continue;
-            if(i>0) {
+            if(i>1) {
                 str = str + coeffs[i] + "x^" + i;
                 str += '+';
             }
+            if(i==1){
+                str = str + coeffs[i] + "x";
+                str += '+';
+            }
             if(i == 0)
-                str+= coeffs[i];
+                str += coeffs[i];
+        }
+        if(str.charAt(str.length()-1)=='+'){
+            String res = str.substring(0, str.length()-1);
+            return res;
         }
         return str;
     }
@@ -40,8 +48,18 @@ public class MyPolynomial {
         for(int i=0;i<len;i++){
             result.coeffs[i] = this.coeffs[i] + right.coeffs[i];
 
-            if(i+1==this.coeffs.length || i+1==right.coeffs.length)
+            if(i+1==this.coeffs.length) {
+                for(int j=i+1;j<len;j++){
+                    result.coeffs[j] = right.coeffs[j];
+                }
                 break;
+            }
+            if(i+1==right.coeffs.length){
+                for(int j=i+1;j<len;j++){
+                    result.coeffs[j] = this.coeffs[j];
+                }
+                break;
+            }
         }
 
         return result;
@@ -49,17 +67,28 @@ public class MyPolynomial {
 
     public MyPolynomial multiply(MyPolynomial right){
         int len = this.coeffs.length+right.coeffs.length;
+        double tempCoeff = 0;
 
         MyPolynomial result = new MyPolynomial(new double[len]);
 
-        /* TODO: realisation! */
+        for(int i=0; i<this.coeffs.length; i++){
+            for(int j=0; j<right.coeffs.length; j++){
+                tempCoeff = this.coeffs[i] * right.coeffs[j];
+                result.coeffs[i+j] += tempCoeff;
+            }
+        }
 
         return result;
     }
 
     public double evaluate(double x){
-        /* TODO: what is it?! And realisation! */
-        return 0.0d;
+        double result=0;
+
+        for(int i=0;i<this.coeffs.length;i++){
+            result += this.coeffs[i]*Math.pow(x, i);
+        }
+
+        return result;
     }
 
 }
