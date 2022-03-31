@@ -1,4 +1,4 @@
-package com.netcracker.homework2;
+package com.netcracker.homework1;
 
 public class MyComplex {
     private double real = 0.0d;

@@ -1,4 +1,4 @@
-package com.netcracker.homework2;
+package com.netcracker.homework1;
 
 public class Container {
     private int x1;

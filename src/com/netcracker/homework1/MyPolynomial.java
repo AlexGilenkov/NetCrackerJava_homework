@@ -1,6 +1,4 @@
-package com.netcracker.homework2;
-
-import java.util.Arrays;
+package com.netcracker.homework1;
 
 public class MyPolynomial {
     private double[] coeffs;
