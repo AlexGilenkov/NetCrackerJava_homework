@@ -1,6 +1,7 @@
 package com.netcracker.homework1;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Book {
     private String name;
@@ -55,6 +56,23 @@ public class Book {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Double.compare(book.price, price) == 0 && qty == book.qty && Objects.equals(name, book.name)
+                && Arrays.equals(authors, book.authors);
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, price, qty);
+        result = 31 * result + Arrays.hashCode(authors);
+        return result;
+    }
+
     public String getAuthorNames(){
         String out="";
         for(Author val: authors){
@@ -95,6 +113,16 @@ class Author{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return gender == author.gender && Objects.equals(name, author.name) && Objects.equals(email, author.email);
+    }
+
+
+
     public String getName() {
         return name;
     }
@@ -109,6 +137,11 @@ class Author{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, gender);
     }
 
     public char getGender() {

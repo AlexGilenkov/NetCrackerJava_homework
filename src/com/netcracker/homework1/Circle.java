@@ -1,14 +1,14 @@
 package com.netcracker.homework1;
 
 public class Circle {
-    private double radius = 1.0d;
+    private float radius = 1.0f;
     private String color = "red";
 
     public Circle(){}
-    public Circle(double radius) {
+    public Circle(float radius) {
         this.radius = radius;
     }
-    public Circle(double radius, String color){
+    public Circle(float radius, String color){
         this.color = color;
         this.radius = radius;
     }
@@ -24,11 +24,30 @@ public class Circle {
                 ", color='" + color + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        return Double.compare(circle.radius, radius) == 0 && this.color.equals(circle.color);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31*result + Float.floatToIntBits(radius);
+        result = 31*result + this.color.hashCode();
+
+        return result;
+    }
+
     //===================================================================
-    public double getRadius() {
+    public float getRadius() {
         return radius;
     }
-    public void setRadius(double radius) {
+    public void setRadius(float radius) {
         this.radius = radius;
     }
     public String getColor() {
