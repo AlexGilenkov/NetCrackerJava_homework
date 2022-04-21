@@ -1,5 +1,7 @@
 package com.netcracker.homework3;
 
+import com.netcracker.homework3.chapter9.ChessPiece;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -86,6 +88,12 @@ public class Main {
         System.out.println(battery.getRemainingCapacity());
         */
 
+        ChessPiece chessPiece = new ChessPiece();
+
+        chessPiece.setPosition("F8");
+
+        System.out.println(chessPiece.getPosition());
 
     }
+
 }
