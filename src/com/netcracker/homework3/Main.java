@@ -1,6 +1,6 @@
 package com.netcracker.homework3;
 
-import com.netcracker.homework3.chapter9.ChessPiece;
+import com.netcracker.homework3.chess.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -88,11 +88,26 @@ public class Main {
         System.out.println(battery.getRemainingCapacity());
         */
 
-        ChessPiece chessPiece = new ChessPiece();
+        /*
+        Pawn pawn = new Pawn("White", "C3");
+        System.out.println(pawn.canMoveTo());
 
-        chessPiece.setPosition("F8");
+        Knight knight = new Knight("White", "c5");
+        System.out.println(knight.canMoveTo());
 
-        System.out.println(chessPiece.getPosition());
+        Bishop bishop = new Bishop("White", "A1");
+        System.out.println(bishop.canMoveTo());
+
+        Rook rook = new Rook("White", "A1");
+        System.out.println(rook.canMoveTo());
+
+        Queen queen = new Queen("White", "A1");
+        System.out.println(queen.canMoveTo());
+
+        King king = new King("White", "H8");
+        System.out.println(king.canMoveTo());
+         */
+
 
     }
 
