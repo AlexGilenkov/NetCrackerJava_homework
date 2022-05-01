@@ -1,6 +1,10 @@
 package com.netcracker.homework3;
 
+import com.netcracker.homework3.cclock.Clock;
+import com.netcracker.homework3.cclock.WorldClock;
 import com.netcracker.homework3.chess.*;
+
+import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -107,6 +111,16 @@ public class Main {
         King king = new King("White", "H8");
         System.out.println(king.canMoveTo());
          */
+
+        /*
+        Clock clock = new Clock();
+        clock.setAlarm(13,38);
+        System.out.println(clock.getTime());
+
+        WorldClock worldClock = new WorldClock(3);
+        System.out.println(worldClock.getTime());
+        */
+
 
 
     }
