@@ -1,7 +1,6 @@
 package com.netcracker.homework4;
 
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
 public class MyLinkedList<E> implements ILinkedList<E> {
 
@@ -9,6 +8,13 @@ public class MyLinkedList<E> implements ILinkedList<E> {
     private Node<E> last;
     private int size;
 
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public boolean contains(Object element) {
+        return indexOf(element) >= 0;
+    }
 
     @Override
     public void add(Object element) {
@@ -100,7 +106,11 @@ public class MyLinkedList<E> implements ILinkedList<E> {
     }
 
     @Override
-    public E remove(int index) {
+    public E remove(int index) throws ArrayIndexOutOfBoundsException{
+        if((size-1) < index){
+            throw new ArrayIndexOutOfBoundsException("index > size");
+        }
+
         Node<E> cur = first;
         Node<E> prev = first;
         for(int i = 0; i<index; ++i){
@@ -115,12 +125,16 @@ public class MyLinkedList<E> implements ILinkedList<E> {
         }
 
         prev.setNextNode(cur.getNextNode());
-
+        size--;
         return cur.getElement();
     }
 
     @Override
-    public E set(int index, Object element) {
+    public E set(int index, Object element) throws ArrayIndexOutOfBoundsException   {
+        if((size-1) < index){
+            throw new ArrayIndexOutOfBoundsException("index > size");
+        }
+
         Node<E> cur = first;
         for(int i = 0; i<index; ++i){
             cur = cur.getNextNode();
@@ -135,26 +149,45 @@ public class MyLinkedList<E> implements ILinkedList<E> {
     }
 
     @Override
-    public E[] toArray() {
-        E[] arr = (E[]) new Object[size];
-        for(int i=0; i<size; ++i){
-            arr[i] = this.get(i);
+    public Object[] toArray() {
+        Object[] result = new Object[size];
+        int i = 0;
+        for (Node<E> x = first; x != null; x = x.getNextNode())
+            result[i++] = x.getElement();
+        return result;
+    }
+
+    public <E> E[] toArray(E[] a) {
+        if (a.length < size)
+            a = (E[])java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size);
+        int i = 0;
+        Object[] result = a;
+        for (Node x = first; x != null; x = x.getNextNode()) {
+            result[i++] = x.getElement();
         }
-        return arr;
+
+        if (a.length > size)
+            a[size] = null;
+
+        return a;
     }
 
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<>() {
+        return new Iterator<E>() {
+
+            private int curIndex=0;
+
             @Override
             public boolean hasNext() {
-                return false;
+                return curIndex<size;
             }
 
             @Override
             public E next() {
-                return null;
+                return get(curIndex++);
             }
         };
     }
@@ -163,4 +196,5 @@ public class MyLinkedList<E> implements ILinkedList<E> {
     public String toString() {
         return Arrays.toString(this.toArray());
     }
+
 }

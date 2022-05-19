@@ -1,7 +1,5 @@
 package com.netcracker.homework4;
 
-import java.util.List;
-
 public interface ILinkedList<E> extends Iterable {
 
     void add(E element);
@@ -20,7 +18,7 @@ public interface ILinkedList<E> extends Iterable {
 
     int size();
 
-    E[] toArray();
+    Object[] toArray();
 
     String toString();
 }
