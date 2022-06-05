@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New message</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<style>
+    input { width : 80%; }
+    textarea {width: 80%; height: auto}
+</style>
+<body>
+<form action="#" th:action="@{/sendemail}" th:object="${message}" method="post">
+    <p>Кому: <input type="text" th:field="*{to}" /></p>
+    <p>От кого: <input type="text" th:field="*{from}" /></p>
+    <p>Тема: <input type="text" th:field="*{subject}" /></p>
+    <p>Текст: <input type="text" th:field="*{text}" /></p>
+
+    <p><input type="submit" value="Отправить" /> </p>
+</form>
+
+</body>
+</html>

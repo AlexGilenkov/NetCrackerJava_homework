@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Добавьте нового пользователя, заполнив форму ниже...</h1>
+<form action="#" th:action="@{/save-user}" th:object="${userform}" method="post">
+    <p>Фамилия: <input type="text" th:field="*{lastName}" /></p>
+    <p>Имя: <input type="text" th:field="*{firstName}" /></p>
+    <p>Отчество: <input type="text" th:field="*{patronymic}" /></p>
+    <p>Возраст: <input type="text" th:field="*{age}" /></p>
+    <p>Зарплата: <input type="text" th:field="*{salary}" /></p>
+    <p>e-mail: <input type="text" th:field="*{email}" /></p>
+    <p>Место работы: <input type="text" th:field="*{workPlace}" /></p>
+    <p><input type="submit" value="Save" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>...или найдите добавленного ранее...</h3>
+<form action="#" th:action="@{/find-user}" th:object="${findform}" method="post">
+    <p>Имя: <input type="text" th:field="*{name}" /></p>
+    <p>Фамилия: <input type="text" th:field="*{family}" /></p>
+    <p><input type="submit" value="Find" /></p>
+</form>
+
+</body>
+</html>

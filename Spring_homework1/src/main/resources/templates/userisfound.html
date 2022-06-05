@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User is found</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Пользователь найден:</h1>
+
+<form action="#" th:action="@{/email}" th:object="${user}"  th:method="post">
+  <p th:text="'Фамилия: ' + ${user.lastName}" />
+  <p th:text="'Имя: ' + ${user.firstName}" />
+  <p th:text="'Отчество: ' + ${user.patronymic}"/>
+  <p th:text="'Возраст: ' + ${user.age}" />
+  <p th:text="'Зарплата: ' + ${user.salary}" />
+  <p th:text="'E-mail: ' + ${user.email}" />
+  <p th:text="'Место работы: ' + ${user.workPlace}" />
+  <hr>
+  <p th:text="'Текущее время: ' + ${info.time}" />
+  <p th:text="'Браузер: ' +  ${info.browser}"/>
+  <hr>
+  <input type="submit" value="Отправить письмо" />
+</form>
+
+<a href="/user">Вернуться</a>
+</body>
+</html>

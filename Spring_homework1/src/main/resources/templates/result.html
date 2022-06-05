@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User has been saved</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Пользователь был успешно сохранен:</h1>
+<p th:text="'Фамилия: ' + ${user.lastName}" />
+<p th:text="'Имя: ' + ${user.firstName}" />
+<p th:text="'Отчество: ' + ${user.patronymic}"/>
+<p th:text="'Возраст: ' + ${user.age}" />
+<p th:text="'Зарплата: ' + ${user.salary}" />
+<p th:text="'e-mail: ' + ${user.email}"/>
+<p th:text="'Место работы: ' + ${user.workPlace}" />
+<a href="/user">Вернуться</a>
+</body>
+</html>

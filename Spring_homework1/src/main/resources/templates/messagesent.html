@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Message sent</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Сообщение отправлено:</h1>
+<h3><p th:text="'Кому: ' + ${message.to}" /></h3>
+<h3><p th:text="'От кого: ' + ${message.from}" /></h3>
+<h3><p th:text="'Тема: ' + ${message.subject}"/></h3>
+<hr>
+<p th:text="'Текст: ' + ${message.text}" />
+<hr>
+<a href="/user">Вернуться к началу</a>
+</body>
+</html>
