@@ -1,10 +1,7 @@
 package com.netcracker.controller;
 
 import com.netcracker.constant.MyConstants;
-import com.netcracker.model.CustomMessage;
-import com.netcracker.model.Info;
-import com.netcracker.model.User;
-import com.netcracker.model.UserForSearch;
+import com.netcracker.model.*;
 import com.netcracker.service.MyEmailService;
 import com.netcracker.service.MyMailSender;
 import com.netcracker.service.RegexService;
@@ -32,8 +29,29 @@ public class UserFormController {
     public String userForm(Model model){
         model.addAttribute("userform", new User());
         model.addAttribute("findform", new UserForSearch());
-
+        model.addAttribute("loadform", new MyPath());
         return "userform";
+    }
+
+    @GetMapping("/find-user")
+    public String uploadUser(@ModelAttribute MyPath path,
+                             Model model, HttpServletRequest request){
+        User user = userDataService.downloadFromFile(path.getPath());
+        if (user == null) {
+            return "usernotfound";
+        } else {
+            Info info = new Info();
+            info.setTime(String.valueOf(new Date(System.currentTimeMillis())));
+            info.setBrowser(String.valueOf(request.getHeader("User-Agent")));
+            model.addAttribute("user", user);
+            model.addAttribute("info", info);
+            CustomMessage m = new CustomMessage();
+            m.setTo(user.getEmail());
+            model.addAttribute("message", m);
+            model.addAttribute("email", user.getEmail());
+
+            return "userisfound";
+        }
     }
 
     @PostMapping("/find-user")

@@ -50,4 +50,16 @@ public class UserDataService {
         return user;
     }
 
+    public User downloadFromFile(String src){
+        User user = new User();
+        try(BufferedReader input = new BufferedReader(new FileReader(src)) ) {
+            String in = input.readLine();
+            user.parseUser(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        saveInFile(user);
+        return user;
+    }
+
 }

@@ -22,6 +22,11 @@
     <p>Фамилия: <input type="text" th:field="*{family}" /></p>
     <p><input type="submit" value="Find" /></p>
 </form>
+<h3>...или загрузите из файла...</h3>
+<form action="#" th:action="@{/find-user}" th:object="${loadform}" method="get">
+    <p>Полный путь: <input type="text" th:field="*{path}" /></p>
+    <p><input type="submit" value="Upload" /></p>
+</form>
 
 </body>
 </html>
