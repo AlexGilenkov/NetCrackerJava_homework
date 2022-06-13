@@ -2,12 +2,11 @@ package com.netcracker.service;
 
 import com.netcracker.repository.BookRepository;
 import com.netcracker.repository.BuyRepository;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
 
 @Service
 public class TaskService {
@@ -62,4 +61,17 @@ public class TaskService {
         return list;
     }
 
+    public List<String> findBuysInBuyersAreaLaterMonth (Integer month){
+        List<String> list = buyRepository.findBuysInBuyersArea();
+        List<String> res = new ArrayList<>();
+        for (String s: list){
+
+            String sub = s.split(",")[2];
+            if (Integer.valueOf(sub.substring(5,7)) >= month) {
+                res.add(s);
+            }
+        }
+
+        return res;
+    }
 }

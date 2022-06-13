@@ -1,6 +1,7 @@
 package com.netcracker.controller.tasks;
 
 import com.netcracker.repository.BookRepository;
+import com.netcracker.repository.BuyRepository;
 import com.netcracker.repository.BuyerRepository;
 import com.netcracker.repository.ShopRepository;
 import com.netcracker.service.TaskService;
@@ -23,6 +24,8 @@ public class TaskController {
     BuyerRepository buyerRepository;
     @Autowired
     ShopRepository shopRepository;
+    @Autowired
+    BuyRepository buyRepository;
     @Autowired
     TaskService taskService;
 
@@ -57,4 +60,30 @@ public class TaskController {
         return taskService.findAllBookBySubnameOrHighlyByPrice(subname, edge);
     }
 
+    @GetMapping("/task4/buys-with-family-and-name-shop")
+    public List<String> findAllBuysWithFamilyBuyersAndNamesOfShop(){
+        return buyRepository.findAllBuysWithOtherTablesData();
+    }
+
+    @GetMapping("/task5/buys-with-highly-summ")
+    public List<String> findAllBuysWhereSummHighlyEdge(@RequestParam(name = "edge") Integer edge) {
+        return buyRepository.findBuysWithSummHighlyEdge(edge);
+    }
+
+    @GetMapping("/task5/buys-later-month")
+    public List<String> findBuysLaterMonth(@RequestParam(name = "month") Integer month){
+        return taskService.findBuysInBuyersAreaLaterMonth(month);
+    }
+
+    @GetMapping("/task5/shops-besides-someone-with-bounds")
+    public Set<String> findShopsBesidesSomeoneWithTopAndBottomBounds(@RequestParam(name = "outcast") String outcast,
+                                                                      @RequestParam(name = "bottom") Integer bottom,
+                                                                      @RequestParam(name = "top") Integer top){
+        return buyRepository.findShopsBesidesSomeoneWithTopAndBottomBounds(outcast, bottom, top);
+    }
+
+    @GetMapping("/task5/buys-shoparea-equals-bookstock")
+    public List<String> findAllBuysWhereShopAreaEqualsBookStock(@RequestParam(name = "count") Integer count){
+        return buyRepository.findAllBuysWhereShopAreaEqualsBookStock(count);
+    }
 }
